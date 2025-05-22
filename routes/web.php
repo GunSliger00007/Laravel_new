@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -21,3 +23,10 @@ Route::get('/video-detail', function () {
 Route::get('/videos', function () {
     return view('videos');
 })->name('videos');
+
+Route::get('user/register',[UserController::class,'register']);
+Route::get('user/register',[UserController::class,'login']);
+Route::get('user/login',[UserController::class,'dashboard']);
+
+Route::resource('category',CategoryController::class);
+
