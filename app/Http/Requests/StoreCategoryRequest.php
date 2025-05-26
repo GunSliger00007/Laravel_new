@@ -22,7 +22,19 @@ class StoreCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|unique:categories|max:100',
+            'rank' => 'required|int',
+            'status' => 'required',
+        ];
+    }
+
+    //NOTE: fOR CUSTOM VALIDATION ERROR
+    public function messages()
+    {
+        return [
+            'title.required' => 'Please enter title',
+            'rank.required' => 'Please enter rank',
+            'rank.integer' => 'Rank must be an integer',
         ];
     }
 }

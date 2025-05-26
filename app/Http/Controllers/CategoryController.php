@@ -13,7 +13,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $data=Category::all();
+
+        return view('category.index',compact('data'));
     }
 
     /**
@@ -38,7 +40,10 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        if(!$category){
+            return redirect()->route('category.index');
+        }
+        return view('category.show',compact('category'));
     }
 
     /**
@@ -62,6 +67,12 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        if (!$category) {
+            return redirect()->route('category.index')->with('error', 'Category not found');
+        }
+        $category->delete();
+        return redirect()->route('category.index')->with('success', 'Category deleted successfully');
     }
+
+
 }

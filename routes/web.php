@@ -25,8 +25,8 @@ Route::get('/videos', function () {
 })->name('videos');
 
 Route::get('user/register',[UserController::class,'register']);
-Route::get('user/register',[UserController::class,'login']);
-Route::get('user/login',[UserController::class,'dashboard']);
+Route::get('user/login',[UserController::class,'login']);
+Route::get('user/dashboard',[UserController::class,'dashboard']);
 
 Route::resource('category',CategoryController::class);
 
