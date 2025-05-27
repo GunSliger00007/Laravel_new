@@ -53,6 +53,8 @@
                     <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this category?');">
                 </form>
                 <a href="{{ route('category.show', $category->id) }}" style="padding:4px 8px; background:#2196F3; color:white; text-decoration:none; border-radius:4px;">Show</a>
+                <a href="{{ route('category.edit', $category->id) }}"
+                   style="padding:4px 8px; background:#FFC107; color:white; text-decoration:none; border-radius:4px;">Edit</a>
 
             </td>
         </tr>

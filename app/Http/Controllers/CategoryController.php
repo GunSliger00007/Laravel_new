@@ -31,9 +31,22 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-       $category=Category::create($request->all());
-       dd($category);
+
+        if ($request->file('image_file')) {
+            $file = $request->file('image_file');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('images/category/'), $fileName);
+
+            // Add 'image' to request data for saving
+            $request->request->add(['image' => $fileName]);
+        }
+
+        $category = Category::create($request->all());
+
+        return redirect()->route('category.index')->with('success', 'Category created successfully!');
     }
+
+
 
     /**
      * Display the specified resource.
@@ -51,15 +64,26 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+
+        return view('category.edit',compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(UpdateCategoryRequest $request, Category $category)
+
     {
-        //
+
+        if($category->update($request->all())){
+
+            return redirect()->route('category.index')->with('success','Category Updated Successfully!!!');
+
+        } else {
+
+            return redirect()->route('category.index')->with('error','Category Update Failed!!!');
+
+        }
     }
 
     /**

@@ -7,7 +7,8 @@
 </head>
 <body>
 <h1>Category Create</h1>
-    <form action="{{ route('category.store') }}" method="post">
+    <form action="{{ route('category.store') }}" method="post" enctype="multipart/form-data">
+
         @csrf
         <label for="name">Title</label>
         <input type="text" name="title" placeholder="Enter the title">
